@@ -1,6 +1,4 @@
-![vsco_downloader.py](https://github.com/michabirklbauer/vsco_downloader/workflows/vsco_downloader.py/badge.svg)
-
-# VSCO Downloader
+# VSCO Downloader by Micha Birklbauer
 
 A python script to download images and videos in full resolution from [VSCO](https://vsco.co/).
 
@@ -46,3 +44,15 @@ Examples:
   # downloading a video but not the thumbnail
   download(sample_video, get_video_thumbnails = False)
   ```
+
+## License
+
+[MIT License](https://github.com/michabirklbauer/vsco_downloader/blob/master/LICENSE.md)
+
+## Download
+- ZIP: [DOWNLOAD](https://github.com/michabirklbauer/vsco_downloader/archive/master.zip)
+- TAR.GZ: [DOWNLOAD](https://github.com/michabirklbauer/vsco_downloader/archive/master.tar.gz)
+
+## Contact
+- Website: [michabirklbauer.github.io](https://michabirklbauer.github.io/)
+- Contact: [micha.birklbauer@gmail.com](mailto:micha.birklbauer@gmail.com)
