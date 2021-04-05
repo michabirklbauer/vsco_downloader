@@ -10,6 +10,7 @@ import traceback as tb
 import json
 import sys
 import os
+import re
 
 def download(vsco_media_url, get_video_thumbnails = True):
 
@@ -21,9 +22,10 @@ def download(vsco_media_url, get_video_thumbnails = True):
     data_cleaned_2 = str(data_cleaned_1).split("</script>")[0]
     data_cleaned_3 = str(data_cleaned_2).strip()
     data_cleaned_4 = str(data_cleaned_3).replace("\\x", "\\u00")
+    data_cleaned_5 = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', data_cleaned_4)
 
     try:
-        json_data = json.loads(data_cleaned_4)
+        json_data = json.loads(data_cleaned_5)
     except Exception as e:
         print("ERROR: Failed to load json data!")
         tb.print_exc()
