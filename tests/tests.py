@@ -47,7 +47,7 @@ def test_downloader_4():
     assert vsco_downloader("url", sample_video) == 0
 
 def test_downloader_5():
-    assert vsco_downloader(3, "../links.txt") == 0
+    assert vsco_downloader(3, "links.txt") == 0
 
 def test_downloader_6():
-    assert vsco_downloader("file", "../links.txt") == 0
+    assert vsco_downloader("file", "links.txt") == 0
