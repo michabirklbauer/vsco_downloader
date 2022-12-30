@@ -5,6 +5,9 @@
 # https://github.com/michabirklbauer/
 # micha.birklbauer@gmail.com
 
+version = "1.0.1"
+date = "20221230"
+
 import urllib.request as ur
 import traceback as tb
 import json
@@ -15,7 +18,7 @@ import re
 def download(vsco_media_url, get_video_thumbnails = True):
 
     request_header = { "User-Agent" : "Mozilla/5.0 (Windows NT 6.1; Win64; x64)" }
-    request = ur.Request(vsco_media_url, headers=request_header)
+    request = ur.Request(vsco_media_url, headers = request_header)
     data = ur.urlopen(request).read()
 
     data_cleaned_1 = str(data).split("<script>window.__PRELOADED_STATE__ =")[1]
@@ -37,12 +40,12 @@ def download(vsco_media_url, get_video_thumbnails = True):
         for media in medias:
             info = medias[media]["media"]
             if not bool(info["isVideo"]) or get_video_thumbnails:
-                media_url = "https://" + str(info["responsiveUrl"])
+                media_url = "https://" + str(info["responsiveUrl"].encode().decode("unicode-escape"))
                 media_name = media_url.split("/")[-1]
                 ur.urlretrieve(media_url, media_name)
                 media_urls.append(media_url)
             if bool(info["isVideo"]):
-                media_url = "https://" + str(info["videoUrl"])
+                media_url = "https://" + str(info["videoUrl"].encode().decode("unicode-escape"))
                 media_name = media_url.split("/")[-1]
                 ur.urlretrieve(media_url, media_name)
                 media_urls.append(media_url)
@@ -60,7 +63,7 @@ def vsco_downloader(option = None, arg = None):
         prompt_str = "Please enter an URL to an VSCO post e. g. " + link + " \n"
         url = input(prompt_str)
         r = download(url)
-        if r == 0:
+        if r != 1:
             print("Download successfully!")
             return 0
         else:
@@ -74,7 +77,7 @@ def vsco_downloader(option = None, arg = None):
             return 1
 
         r = download(arg)
-        if r == 0:
+        if r != 1:
             print("Download successfully!")
             return 0
         else:
