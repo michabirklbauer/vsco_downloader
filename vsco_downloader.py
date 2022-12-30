@@ -5,7 +5,7 @@
 # https://github.com/michabirklbauer/
 # micha.birklbauer@gmail.com
 
-version = "1.0.1"
+version = "1.0.2"
 date = "20221230"
 
 import urllib.request as ur
