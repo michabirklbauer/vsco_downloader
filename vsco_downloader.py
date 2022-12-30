@@ -5,7 +5,7 @@
 # https://github.com/michabirklbauer/
 # micha.birklbauer@gmail.com
 
-version = "1.0.1"
+version = "1.0.2"
 date = "20221230"
 
 import urllib.request as ur
@@ -41,12 +41,12 @@ def download(vsco_media_url, get_video_thumbnails = True):
             info = medias[media]["media"]
             if not bool(info["isVideo"]) or get_video_thumbnails:
                 media_url = "https://" + str(info["responsiveUrl"].encode().decode("unicode-escape"))
-                media_name = media_url.split("/")[-1]
+                media_name = str(media) + ".jpg"
                 ur.urlretrieve(media_url, media_name)
                 media_urls.append(media_url)
             if bool(info["isVideo"]):
                 media_url = "https://" + str(info["videoUrl"].encode().decode("unicode-escape"))
-                media_name = media_url.split("/")[-1]
+                media_name = str(media) + ".mp4"
                 ur.urlretrieve(media_url, media_name)
                 media_urls.append(media_url)
     except Exception as e:
