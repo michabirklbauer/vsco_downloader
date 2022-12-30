@@ -60,7 +60,7 @@ def vsco_downloader(option = None, arg = None):
         prompt_str = "Please enter an URL to an VSCO post e. g. " + link + " \n"
         url = input(prompt_str)
         r = download(url)
-        if r != 0:
+        if r == 0:
             print("Download successfully!")
             return 0
         else:
@@ -74,7 +74,7 @@ def vsco_downloader(option = None, arg = None):
             return 1
 
         r = download(arg)
-        if r != 1:
+        if r == 0:
             print("Download successfully!")
             return 0
         else:
