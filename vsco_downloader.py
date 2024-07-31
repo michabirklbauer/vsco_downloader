@@ -5,7 +5,7 @@
 # https://github.com/michabirklbauer/
 # micha.birklbauer@gmail.com
 
-version = "1.0.2"
+version = "1.0.3"
 date = "20221230"
 
 import urllib.request as ur
@@ -15,7 +15,7 @@ import sys
 import os
 import re
 
-def download(vsco_media_url, get_video_thumbnails = True):
+def download(vsco_media_url, get_video_thumbnails = True, save = True):
 
     request_header = { "User-Agent" : "Mozilla/5.0 (Windows NT 6.1; Win64; x64)" }
     request = ur.Request(vsco_media_url, headers = request_header)
@@ -34,6 +34,10 @@ def download(vsco_media_url, get_video_thumbnails = True):
         tb.print_exc()
         return 1
 
+    opener = ur.build_opener()
+    opener.addheaders = [("User-Agent", "Mozilla/5.0 (Windows NT 6.1; Win64; x64)")]
+    ur.install_opener(opener)
+
     media_urls = []
     try:
         medias = json_data["medias"]["byId"]
@@ -42,12 +46,14 @@ def download(vsco_media_url, get_video_thumbnails = True):
             if not bool(info["isVideo"]) or get_video_thumbnails:
                 media_url = "https://" + str(info["responsiveUrl"].encode().decode("unicode-escape"))
                 media_name = str(media) + ".jpg"
-                ur.urlretrieve(media_url, media_name)
+                if save:
+                    ur.urlretrieve(media_url, media_name)
                 media_urls.append(media_url)
             if bool(info["isVideo"]):
                 media_url = "https://" + str(info["videoUrl"].encode().decode("unicode-escape"))
                 media_name = str(media) + ".mp4"
-                ur.urlretrieve(media_url, media_name)
+                if save:
+                    ur.urlretrieve(media_url, media_name)
                 media_urls.append(media_url)
     except Exception as e:
         print("ERROR: Failed to extract image/video location!")
