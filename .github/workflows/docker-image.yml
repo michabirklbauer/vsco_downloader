@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username michabirklbauer --password-stdin
+        docker build . --file Dockerfile --tag michabirklbauer/vscodownloader:latest
+        docker push michabirklbauer/vscodownloader:latest
+        GIT_SHA="$(git rev-parse --short HEAD)"
+        docker tag michabirklbauer/vscodownloader:latest michabirklbauer/vscodownloader:$GIT_SHA
+        docker push michabirklbauer/vscodownloader:$GIT_SHA
