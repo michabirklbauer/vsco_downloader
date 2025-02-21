@@ -39,6 +39,8 @@ def main_page():
         download = st.button("Download!", type = "primary", use_container_width = True)
 
     if download:
+        if url is None or url.strip() == "":
+            url_err = st.error("URL of the post has to be provided!")
         media_urls = d(url, True, False)
         header_2 = st.subheader("Extracted Post Media", divider = "rainbow")
         display_media_urls = st.markdown("\n".join([f"- Found media url: [{media_url}]({media_url})" for media_url in media_urls]))
