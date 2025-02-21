@@ -5,8 +5,8 @@
 # https://github.com/michabirklbauer/
 # micha.birklbauer@gmail.com
 
-version = "1.0.3"
-date = "20221230"
+version = "1.0.4"
+date = "20250221"
 
 import urllib.request as ur
 import traceback as tb
@@ -24,7 +24,7 @@ def download(vsco_media_url, get_video_thumbnails = True, save = True):
     data_cleaned_1 = str(data).split("<script>window.__PRELOADED_STATE__ =")[1]
     data_cleaned_2 = str(data_cleaned_1).split("</script>")[0]
     data_cleaned_3 = str(data_cleaned_2).strip()
-    data_cleaned_4 = str(data_cleaned_3).replace("\\x", "\\u00")
+    data_cleaned_4 = str(data_cleaned_3).replace("undefined", "\"\"").replace("\\x", "\\u00")
     data_cleaned_5 = re.sub(r'(?<!\\)\\(?!["\\/bfnrt]|u[0-9a-fA-F]{4})', r'', data_cleaned_4)
 
     try:
