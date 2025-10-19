@@ -1,6 +1,6 @@
 # Dockerfile with VSCO Downloader GUI
 # author: Micha Birklbauer
-# version: 1.0.0
+# version: 1.0.1
 
 FROM python:3.12.0
 
@@ -10,7 +10,7 @@ RUN mkdir app
 RUN mkdir app/.streamlit
 RUN mkdir app/.streamlit/ico
 COPY requirements.txt app
-COPY vsco_downloader.py app
+COPY vsco.py app
 COPY streamlit_app.py app
 COPY .streamlit/config.toml app/.streamlit
 COPY .streamlit/ico/download-icon.png app/.streamlit/ico
