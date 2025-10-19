@@ -2,7 +2,7 @@
 
 # VSCO Downloader
 
-A python script to retrieve links for images and videos in full resolution from [VSCO](https://vsco.co/).
+A simple python library to extract raw image and video paths from [VSCO](https://www.vsco.co/) posts.
 
 ## Requirements
 
@@ -14,19 +14,23 @@ Examples:
 
 - ### Using the python functions:
   ```python
-  from vsco_downloader import download
+  >>> from vsco import get_links
 
-  sample_image = "https://vsco.co/emilieristevski/media/561f648001146426743090fa"
-  sample_video = "https://vsco.co/emmasuz/media/5c61243fbbb29b6617e3d26c"
+  >>> sample_image = "https://vsco.co/emilieristevski/media/561f648001146426743090fa"
+  >>> sample_video = "https://vsco.co/emmasuz/media/5c61243fbbb29b6617e3d26c"
 
-  # downloading an image
-  download(sample_image)
+  >>> # downloading an image
+  >>> get_links(sample_image)
+  ['https://im.vsco.co/1/51a9887c50f8151/561f648001146426743090fa/vsco_101515.jpg']
 
-  # downloading a video
-  download(sample_video)
+  >>> # downloading a video
+  >>> get_links(sample_video)
+  ['https://im.vsco.co/aws-us-west-2/aaf64f/597912/5c61243fbbb29b6617e3d26c/5c61243fbbb29b6617e3d26c.jpg',
+   'https://img.vsco.co/aaf64f/597912/5c61243fbbb29b6617e3d26c/5c61243fbbb29b6617e3d26c.mp4']
 
-  # downloading a video but not the thumbnail
-  download(sample_video, get_video_thumbnails = False)
+  >>> # downloading a video but not the thumbnail
+  >>> get_links(sample_video, get_video_thumbnails = False)
+  ['https://img.vsco.co/aaf64f/597912/5c61243fbbb29b6617e3d26c/5c61243fbbb29b6617e3d26c.mp4']
   ```
 - ### Using the web interface:
   A web version is available [here](http://89.58.32.151:8503/).

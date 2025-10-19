@@ -1,48 +1,34 @@
 # VSCO Downloader by Micha Birklbauer
 
-A python script to download images and videos in full resolution from [VSCO](https://vsco.co/).
+A simple python library to extract raw image and video paths from [VSCO](https://www.vsco.co/) posts.
 
 ## Requirements
-- Python (version 3.7 or higher)
 
-## Features
-- Download a single image or video by running the script and providing the link as input.
-- Download a single image or video by passing the link as a parameter to the script.
-- Download multiple images or videos by passing a filelist to the script (as parameter).
+- Python (version 3.10 or higher)
 
 ## Usage
 
 Examples:
 
-- ### Download a single image:
-  ```shell
-  python vsco_downloader.py
-  Please enter an URL to an VSCO post e. g. https://vsco.co/emilieristevski/media/561f648001146426743090fa
-  https://vsco.co/emilieristevski/media/561f648001146426743090fa
-  ```
-- ### Download a single image using parameters:
-  ```shell
-  python vsco_downloader.py https://vsco.co/emilieristevski/media/561f648001146426743090fa
-  ```
-- ### Download multiple image using a filelist (e.g. links.txt):
-  ```shell
-  python vsco_downloader.py links.txt
-  ```
 - ### Using the python functions:
   ```python
-  from vsco_downloader import download
+  >>> from vsco import get_links
 
-  sample_image = "https://vsco.co/emilieristevski/media/561f648001146426743090fa"
-  sample_video = "https://vsco.co/emmasuz/media/5c61243fbbb29b6617e3d26c"
+  >>> sample_image = "https://vsco.co/emilieristevski/media/561f648001146426743090fa"
+  >>> sample_video = "https://vsco.co/emmasuz/media/5c61243fbbb29b6617e3d26c"
 
-  # downloading an image
-  download(sample_image)
+  >>> # downloading an image
+  >>> get_links(sample_image)
+  ['https://im.vsco.co/1/51a9887c50f8151/561f648001146426743090fa/vsco_101515.jpg']
 
-  # downloading a video
-  download(sample_video)
+  >>> # downloading a video
+  >>> get_links(sample_video)
+  ['https://im.vsco.co/aws-us-west-2/aaf64f/597912/5c61243fbbb29b6617e3d26c/5c61243fbbb29b6617e3d26c.jpg',
+   'https://img.vsco.co/aaf64f/597912/5c61243fbbb29b6617e3d26c/5c61243fbbb29b6617e3d26c.mp4']
 
-  # downloading a video but not the thumbnail
-  download(sample_video, get_video_thumbnails = False)
+  >>> # downloading a video but not the thumbnail
+  >>> get_links(sample_video, get_video_thumbnails = False)
+  ['https://img.vsco.co/aaf64f/597912/5c61243fbbb29b6617e3d26c/5c61243fbbb29b6617e3d26c.mp4']
   ```
 
 ## GUI
