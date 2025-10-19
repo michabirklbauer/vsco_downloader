@@ -27,7 +27,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Copy scripts to "/tests"
       run: |
-        cp vsco_downloader.py tests
+        cp vsco.py tests
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
