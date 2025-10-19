@@ -45,6 +45,10 @@ Examples:
   download(sample_video, get_video_thumbnails = False)
   ```
 
+## GUI
+
+A web version is available [here](http://89.58.32.151:8503/).
+
 ## License
 
 [MIT License](https://github.com/michabirklbauer/vsco_downloader/blob/master/LICENSE.md)
