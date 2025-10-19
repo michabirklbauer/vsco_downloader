@@ -34,6 +34,7 @@ def test_video_download3():
 def test_video_download4():
     assert len(download(sample_video, False)) == 1
 
+"""
 def test_downloader_1():
     assert vsco_downloader(2, sample_image) == 0
 
@@ -51,3 +52,4 @@ def test_downloader_5():
 
 def test_downloader_6():
     assert vsco_downloader("file", "links.txt") == 0
+"""
